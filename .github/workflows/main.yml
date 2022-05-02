@@ -113,7 +113,7 @@ jobs:
         run: |
           mkdir build
           cd build
-          python ../configure.py --enable-optimize --sm-path="${{ github.workspace }}/sourcemod-${{ matrix.sm_version }}" --mms-path="${{ github.workspace }}/metamod-${{ matrix.sm_version }}" --hl2sdk-root "${{ github.workspace }}/hl2sdk-csgo" --sdks=csgo
+          python ../configure.py --enable-optimize --sm-path="${{ github.workspace }}/sourcemod-${{ matrix.sm_version }}" --mms-path="${{ github.workspace }}/metamod-${{ matrix.sm_version }}" --hl2sdk-root "${{ github.workspace }}" --sdks=csgo
           ambuild
           
       - name: Uploading package
