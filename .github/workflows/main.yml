@@ -82,6 +82,13 @@ jobs:
           repository: alliedmodders/metamod-source
           ref: ${{ matrix.branch }}
           path: metamod-${{ matrix.sm_version }}
+
+      - name: Checking out HL2SDK
+        uses: actions/checkout@v2
+        with:
+          repository: alliedmodders/hl2sdk
+          ref: csgo
+          path: hl2sdk-csgo
           
       - name: Checking out AMBuild
         uses: actions/checkout@v2
@@ -106,7 +113,7 @@ jobs:
         run: |
           mkdir build
           cd build
-          python ../configure.py --enable-optimize --sm-path="${{ github.workspace }}/sourcemod-${{ matrix.sm_version }}" --mms-path="${{ github.workspace }}/metamod-${{ matrix.sm_version }}"
+          python ../configure.py --enable-optimize --sm-path="${{ github.workspace }}/sourcemod-${{ matrix.sm_version }}" --mms-path="${{ github.workspace }}/metamod-${{ matrix.sm_version }}" --hl2sdk-root "${{ github.workspace }}/hl2sdk-csgo" --sdks=csgo
           ambuild
           
       - name: Uploading package
